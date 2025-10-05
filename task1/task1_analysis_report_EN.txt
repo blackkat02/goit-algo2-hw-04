@@ -1,0 +1,57 @@
+================================================================================
+| MAXIMUM FLOW ANALYSIS OF LOGISTICS NETWORK (EDMONDS-KARP ALGORITHM) |
+================================================================================
+| OVERALL MAXIMUM FLOW: 115 UNITS |
+================================================================================
+
+## 1. Which terminals provide the greatest flow of goods?
+-> Terminal 1 (T1) Flow: **60 units** (Potential: 60 units)
+-> Terminal 2 (T2) Flow: **55 units** (Potential: 55 units)
+
+CONCLUSION: **Terminal 1** contributes the highest flow. Both terminals are operating at **100% capacity** and are the primary constraint on the network's total throughput.
+
+--------------------------------------------------------------------------------
+## 2 & 4. Bottlenecks (Min-Cut) and Optimization Paths
+The **Minimum Cut** (the network's primary constraint) value is **115 units**.
+
+A. Primary Bottlenecks (Limiting Overall Flow):
+   These are the edges connecting Terminals to Warehouses. Their combined capacity limits the entire network.
+      - T1 -> W1 (25 units)
+      - T1 -> W2 (20 units)
+      - T1 -> W3 (15 units)
+      - T2 -> W2 (10 units)
+      - T2 -> W3 (15 units)
+      - T2 -> W4 (30 units)
+
+ACTION FOR EFFICIENCY IMPROVEMENT:
+   To **increase OVERALL throughput** (>115 units), investment must target the capacity of **these six T -> W edges**. For instance, increasing T2 -> W4 from 30 to 40 would raise the Max Flow to 125 units.
+
+B. Local Bottlenecks (Limiting Specific Stores):
+      - W1 -> M1 (15 units)
+      - W1 -> M2 (10 units)
+      - W2 -> M4 (15 units)
+      - W2 -> M5 (10 units)
+      - W3 -> M7 (20 units)
+      - W4 -> M10 (20 units)
+      - W4 -> M11 (10 units)
+
+IMPACT ON OVERALL FLOW: These local constraints **do not affect** the total network capacity of 115, but they limit specific distribution points.
+
+--------------------------------------------------------------------------------
+## 3. Which stores received the least amount of goods?
+Stores whose supply is limited by the smallest individual capacities:
+   - **M3**: 0 units (Limited by W1 -> M3 with capacity 0 units)
+   - **M9**: 0 units (Limited by W3 -> M9 with capacity 0 units)
+   - **M12**: 0 units (Limited by W4 -> M12 with capacity 0 units)
+   - **M13**: 0 units (Limited by W4 -> M13 with capacity 0 units)
+   - **M14**: 0 units (Limited by W4 -> M14 with capacity 0 units)
+   - **M6**: 5 units (Limited by W2 -> M6 with capacity 5 units)
+   - **M2**: 10 units (Limited by W1 -> M2 with capacity 10 units)
+   - **M5**: 10 units (Limited by W2 -> M5 with capacity 10 units)
+   - **M8**: 10 units (Limited by W3 -> M8 with capacity 10 units)
+   - **M11**: 10 units (Limited by W4 -> M11 with capacity 10 units)
+   - **M1**: 15 units (Limited by W1 -> M1 with capacity 15 units)
+   - **M4**: 15 units (Limited by W2 -> M4 with capacity 15 units)
+
+CAN SUPPLY BE INCREASED?: **Yes, locally.** Increasing the W4 -> M13 capacity from 5 to 15 will increase M13's local supply. However, this **will not increase the overall Max Flow of 115**.
+================================================================================
